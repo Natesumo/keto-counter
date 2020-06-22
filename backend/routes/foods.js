@@ -16,12 +16,39 @@ router.route("/add").post((req, res) => {
   const newFood = new Food({
     name,
     calories,
-    carb,
+    carbs,
   });
 
   newFood
     .save()
     .then(() => res.json("Food added!"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/:id").get((req, res) => {
+  Food.findById(req.params.id)
+    .then((food) => res.json(food))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/:id").delete((req, res) => {
+  Food.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Food Deleted."))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/update/:id").post((req, res) => {
+  Food.findById(req.params.id)
+    .then((food) => {
+      food.name = req.body.name;
+      food.calories = Number(req.body.calories);
+      food.carbs = Number(req.body.carbs);
+
+      food
+        .save()
+        .then(() => res.json("Food Updated!"))
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
