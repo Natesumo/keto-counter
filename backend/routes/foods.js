@@ -9,13 +9,11 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/add").post((req, res) => {
-  const username = req.body.username;
   const name = req.body.name;
   const calories = Number(req.body.calories);
   const carbs = Number(req.body.carbs);
 
   const newFood = new Food({
-    username,
     name,
     calories,
     carbs,
