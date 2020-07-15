@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
-const User = require("./user.model");
 
 const Schema = mongoose.Schema;
 
 const foodSchema = new Schema(
   {
-<<<<<<< HEAD
-    user: {
-      type: Schema.Types.String,
+    username: {
+      type: String,
       required: true,
     },
-=======
->>>>>>> parent of 57775aa... Frontend successfully talking to backend
     name: {
       type: String,
       required: true,
