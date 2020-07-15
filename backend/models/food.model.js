@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+const User = require("./user.model");
 
 const Schema = mongoose.Schema;
 
 const foodSchema = new Schema(
   {
-    username: {
-      type: String,
+    user: {
+      type: Schema.Types.String,
       required: true,
     },
     name: {

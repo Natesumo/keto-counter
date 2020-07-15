@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Food = require("./food.model");
 
 const Schema = mongoose.Schema;
 
@@ -11,6 +12,12 @@ const userSchema = new Schema(
       trim: true,
       minlength: 3,
     },
+    foods: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: Food,
+      },
+    ],
   },
   {
     timestamps: true,
