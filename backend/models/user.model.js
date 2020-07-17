@@ -1,21 +1,18 @@
 const mongoose = require("mongoose");
+const Food = require("./food.model");
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      minlength: 3,
-    },
+const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minlength: 3,
   },
-  {
-    timestamps: true,
-  }
-);
+  foods: [{ type: Schema.Types.ObjectId, ref: Food }],
+});
 
 const User = mongoose.model("User", userSchema);
 

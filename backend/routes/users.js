@@ -7,6 +7,17 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/:username").get((req, res) => {
+  User.findOne({ username: req.params.username })
+    .populate("foods")
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(400).json({ err });
+    });
+});
+
 router.route("/add").post((req, res) => {
   const username = req.body.username;
 

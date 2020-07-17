@@ -11,8 +11,8 @@ router.route("/").get((req, res) => {
 router.route("/add").post((req, res) => {
   const username = req.body.username;
   const name = req.body.name;
-  const calories = Number(req.body.calories);
-  const carbs = Number(req.body.carbs);
+  const calories = req.body.calories;
+  const carbs = req.body.carbs;
 
   const newFood = new Food({
     username,
@@ -23,6 +23,14 @@ router.route("/add").post((req, res) => {
 
   newFood
     .save()
+    .then((res) => {
+      User.findOne({ username: newFood.username }, (err, user) => {
+        if (user) {
+          user.foods.push(newFood);
+          user.save();
+        }
+      });
+    })
     .then(() => res.json("Food added!"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
