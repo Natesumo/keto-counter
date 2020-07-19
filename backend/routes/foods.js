@@ -35,20 +35,20 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").get((req, res) => {
-  Food.findById(req.params.id)
+router.route("/:name").get((req, res) => {
+  Food.findOne({ name: req.params.name })
     .then((food) => res.json(food))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").delete((req, res) => {
-  Food.findByIdAndDelete(req.params.id)
+router.route("/delete/:name").post((req, res) => {
+  Food.deleteOne({ name: req.params.name })
     .then(() => res.json("Food Deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/update/:id").post((req, res) => {
-  Food.findById(req.params.id)
+router.route("/update/:name").post((req, res) => {
+  Food.findOne({ name: req.params.name })
     .then((food) => {
       food.name = req.body.name;
       food.calories = Number(req.body.calories);

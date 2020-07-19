@@ -7,6 +7,8 @@ import FoodList from "./Components/food-list.component";
 import EditFood from "./Components/edit-food.component";
 import CreateFood from "./Components/create-food.component";
 import CreateUser from "./Components/create-user.component";
+import FoodAdded from "./Components/food-added.component";
+import UserCreated from "./Components/user-created.component";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/edit/:id" exact component={EditFood} />
         <Route path="/create" exact component={CreateFood} />
         <Route path="/user" exact component={CreateUser} />
+        <Route path="/foodadded" exact component={FoodAdded} />
+        <Route path="/usercreated" exact component={UserCreated} />
       </div>
     </Router>
   );

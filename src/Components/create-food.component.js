@@ -76,7 +76,7 @@ export default class CreateFood extends Component {
       .post("http://localhost:5000/foods/add", food)
       .then((res) => console.log(res.data));
 
-    // window.location = "/";
+    window.location = "/foodadded";
   }
 
   render() {
