@@ -12,6 +12,8 @@ export default class FoodList extends Component {
       username: "",
       users: [],
       foods: [],
+      calories: [],
+      carbs: []
     };
   }
 
@@ -45,24 +47,24 @@ export default class FoodList extends Component {
       username: this.state.username,
     };
 
-    console.log(userchoice.username);
+    // console.log(userchoice.username);
 
     axios
       .get("http://localhost:5000/users/" + userchoice.username)
       .then((response) => {
-        console.log(response.data.foods.map((food) => food.name));
+        console.log(response.data.foods);
 
         this.setState({
-          foods: response.data.foods.map((food) => food.name),
+          foods: response.data.foods
         });
       });
-    console.log(this.state.foods);
+    // console.log(this.state.foods);
   }
 
   render() {
     return (
       <div>
-        <h3>Create New Exercise Log</h3>
+        <h3>Food Log</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Username: </label>
@@ -91,9 +93,28 @@ export default class FoodList extends Component {
             />
           </div>
         </form>
-        {this.state.foods.map(function (food) {
-          return <h1 key={food.name}>{food}</h1>
-        })}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Calories</th>
+              <th scope="col">Carbs</th>
+              <th scope="col">Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.foods.map(function (food) {
+              return (
+                <tr>
+                  <td>{food.name}</td>
+                  <td>{food.calories}</td>
+                  <td>{food.carbs}</td>
+                  <td> Placeholder </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }
