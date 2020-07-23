@@ -79,7 +79,7 @@ export default class CreateFood extends Component {
   render() {
     return (
       <div>
-        <p className=" display-4 text-center m-3">Create New Exercise Log</p>
+        <p className=" display-4 text-center m-3">Create New Food Log</p>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label className="m2 lead">Username: </label>
