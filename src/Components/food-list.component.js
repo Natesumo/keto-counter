@@ -7,13 +7,12 @@ export default class FoodList extends Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       username: "",
       users: [],
       foods: [],
-      calories: [],
-      carbs: []
     };
   }
 
@@ -47,19 +46,20 @@ export default class FoodList extends Component {
       username: this.state.username,
     };
 
-    // console.log(userchoice.username);
-
     axios
       .get("http://localhost:5000/users/" + userchoice.username)
       .then((response) => {
-        console.log(response.data.foods);
-
         this.setState({
           foods: response.data.foods
         });
       });
-    // console.log(this.state.foods);
   }
+
+  handleClick(food) {
+    axios.post('http://localhost:5000/foods/delete/' + food)
+  }
+
+
 
   render() {
     return (
@@ -93,7 +93,7 @@ export default class FoodList extends Component {
             />
           </div>
         </form>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Name</th>
@@ -103,16 +103,21 @@ export default class FoodList extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.foods.map(function (food) {
+            {this.state.foods.map(food => {
               return (
-                <tr>
+                <tr key={food.name}>
                   <td>{food.name}</td>
                   <td>{food.calories}</td>
                   <td>{food.carbs}</td>
-                  <td> Placeholder </td>
+                  <td> <a href="/fooddeleted" onClick={() => this.handleClick(food.name)}>Delete</a></td>
                 </tr>
               )
             })}
+            <tr>
+              <td>Totals:</td>
+              <td>{this.state.foods.map(food => food.calories).reduce((a, b) => a + b, 0)}</td>
+              <td>{this.state.foods.map(food => food.carbs).reduce((a, b) => a + b, 0)}</td>
+            </tr>
           </tbody>
         </table>
       </div>
