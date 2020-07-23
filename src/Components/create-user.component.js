@@ -41,10 +41,10 @@ export default class CreateUser extends Component {
   render() {
     return (
       <div>
-        <h3>Create New User</h3>
+        <p className=" display-4 text-center m-3">Create New User</p>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
+            <label className="m2 lead">Username: </label>
             <input
               type="text"
               required

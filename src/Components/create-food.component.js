@@ -70,11 +70,8 @@ export default class CreateFood extends Component {
       carbs: this.state.carbs,
     };
 
-    console.log(food);
-
     axios
       .post("http://localhost:5000/foods/add", food)
-      .then((res) => console.log(res.data));
 
     window.location = "/foodadded";
   }
@@ -82,10 +79,10 @@ export default class CreateFood extends Component {
   render() {
     return (
       <div>
-        <h3>Create New Exercise Log</h3>
+        <p className=" display-4 text-center m-3">Create New Exercise Log</p>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
+            <label className="m2 lead">Username: </label>
             <select
               ref="userInput"
               required
@@ -103,7 +100,7 @@ export default class CreateFood extends Component {
             </select>
           </div>
           <div className="form-group">
-            <label>Name of food: </label>
+            <label className="m2 lead">Name of food: </label>
             <input
               type="text"
               required
@@ -113,7 +110,7 @@ export default class CreateFood extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Calories: </label>
+            <label className="m2 lead">Calories: </label>
             <input
               type="text"
               className="form-control"
@@ -122,7 +119,7 @@ export default class CreateFood extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Carbs (in grams): </label>
+            <label className="m2 lead">Carbs (in grams): </label>
             <input
               type="text"
               className="form-control"
@@ -135,7 +132,7 @@ export default class CreateFood extends Component {
             <input
               type="submit"
               value="Create Food Log"
-              className="btn btn-primary"
+              className="btn btn-primary p-2"
             />
           </div>
         </form>

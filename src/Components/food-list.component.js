@@ -64,10 +64,10 @@ export default class FoodList extends Component {
   render() {
     return (
       <div>
-        <h3>Food Log</h3>
+        <p className=" display-4 text-center m-3">Food Log</p>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Username: </label>
+            <label className="m2 lead">Username: </label>
             <select
               ref="userInput"
               required
@@ -89,7 +89,7 @@ export default class FoodList extends Component {
             <input
               type="submit"
               value="View Food Log"
-              className="btn btn-primary"
+              className="btn btn-primary p-2"
             />
           </div>
         </form>
@@ -114,9 +114,10 @@ export default class FoodList extends Component {
               )
             })}
             <tr>
-              <td>Totals:</td>
-              <td>{this.state.foods.map(food => food.calories).reduce((a, b) => a + b, 0)}</td>
-              <td>{this.state.foods.map(food => food.carbs).reduce((a, b) => a + b, 0)}</td>
+              <td className="lead font-weight-bold">Totals:</td>
+              <td className="lead font-weight-bold">{this.state.foods.map(food => food.calories).reduce((a, b) => a + b, 0)}</td>
+              <td className="lead font-weight-bold">{this.state.foods.map(food => food.carbs).reduce((a, b) => a + b, 0)}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
