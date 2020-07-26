@@ -1,0 +1,5 @@
+1.) As a health concious individual, I would like to be able to track my calories so that I can manage my eating habits.
+
+2.) As a person that has a varied diet, I would like to be able to input my own foods so that I can get tailored results.
+
+3.) As a dieting duo, I would like to see my friends food logs so that we can collaborate.
